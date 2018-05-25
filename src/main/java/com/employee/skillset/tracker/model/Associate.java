@@ -3,19 +3,19 @@
  */
 package com.employee.skillset.tracker.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * @author hameedu sultan
@@ -51,13 +51,9 @@ public class Associate {
 	
 	private String weakness;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "ASSOCIATE_SKILL",
-            joinColumns = @JoinColumn(name = "associate_id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id")
-    )
-	private Set<Skill> skills;
+	@OneToMany(mappedBy = "associate")
+	@JsonManagedReference
+	private Set<AssociateSkill> skills = new HashSet<AssociateSkill>();
 	
 	public Long getId() {
 		return id;
@@ -131,11 +127,11 @@ public class Associate {
 		this.weakness = weakness;
 	}
 
-	public Set<Skill> getSkills() {
+	public Set<AssociateSkill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(Set<Skill> skills) {
+	public void setSkills(Set<AssociateSkill> skills) {
 		this.skills = skills;
 	}
 	
