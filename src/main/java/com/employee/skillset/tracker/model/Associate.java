@@ -32,6 +32,8 @@ public class Associate {
 	
 	private String name;
 	
+	private String gender;
+	
 	@Column(unique = true)
 	private String email;
 	
@@ -143,4 +145,12 @@ public class Associate {
 		this.image = image;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
 }
