@@ -21,4 +21,6 @@ public interface AssociateService {
 
 	void removeAssociate(Long id);
 
+	Associate getAssociate(Long id);
+
 }

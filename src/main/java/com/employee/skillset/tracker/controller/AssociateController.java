@@ -50,6 +50,18 @@ public class AssociateController {
 	}
 	
 	/**
+	 * GET --> Get an associates
+	 */
+	@GetMapping("/associate/{id}")
+	public ResponseEntity<Associate> getAssociate(@PathVariable Long id) {
+		Associate associate = associateService.getAssociate(id);
+		if (null == associate) {
+			return new ResponseEntity<Associate>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<Associate>(associate, HttpStatus.OK);
+	}
+	
+	/**
 	 * POST --> Add a Associate
 	 */
 	@PostMapping("/associate")

@@ -1,6 +1,7 @@
 package com.employee.skillset.tracker.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,15 @@ public class AssociateServiceImpl implements AssociateService{
 	@Override
 	public void removeAssociate(Long id) {
 		associateRespository.deleteById(id);	
+	}
+
+	@Override
+	public Associate getAssociate(Long id) {
+		Optional<Associate> associates = associateRespository.findById(id);
+		if(associates.isPresent()){
+			return associates.get();
+		}
+		return null;
 	}	
 
 }

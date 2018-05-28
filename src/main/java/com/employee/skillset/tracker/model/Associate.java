@@ -54,7 +54,6 @@ public class Associate {
 	private String weakness;
 	
 	@OneToMany(mappedBy = "associate")
-	@JsonManagedReference
 	private Set<AssociateSkill> skills = new HashSet<AssociateSkill>();
 	
 	public Long getId() {

@@ -1,6 +1,8 @@
 insert into SKILLS(skill_id, skill_name) values(1, 'java');
 insert into SKILLS(skill_id, skill_name) values(2, 'angular');
 insert into SKILLS(skill_id, skill_name) values(3, 'spring');
+insert into SKILLS(skill_id, skill_name) values(4, 'jenkins');
+insert into SKILLS(skill_id, skill_name) values(5, 'html');
 
 insert into ASSOCIATES(associate_id,name,email,status,level,remark,strength,weakness,mobile,gender) values (1,'hameedu','1@abc.com','GREEN','ONE','remark','strength','weakness','1234567890','M');
 insert into ASSOCIATES(associate_id,name,email,status,level,remark,strength,weakness,mobile,gender) values (2,'sultan','12@abc.com','BLUE','TWO','remark','strength','weakness','9876543210','M');
@@ -15,3 +17,6 @@ insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(4,2,1,14);
 
 insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(5,3,1,18);
 insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(6,3,3,19);
+
+insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(7,4,4,18);
+insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(8,4,5,12);
