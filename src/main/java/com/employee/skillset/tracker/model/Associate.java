@@ -3,11 +3,15 @@
  */
 package com.employee.skillset.tracker.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
@@ -51,10 +56,10 @@ public class Associate {
 	
 	private String strength;
 	
-	private String weakness;
+	private String weakness;	
 	
-	@OneToMany(mappedBy = "associate")
-	private Set<AssociateSkill> skills = new HashSet<AssociateSkill>();
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.associate")
+	private List<AssociateSkill> skills = new ArrayList<AssociateSkill>();
 	
 	public Long getId() {
 		return id;
@@ -127,14 +132,6 @@ public class Associate {
 	public void setWeakness(String weakness) {
 		this.weakness = weakness;
 	}
-
-	public Set<AssociateSkill> getSkills() {
-		return skills;
-	}
-
-	public void setSkills(Set<AssociateSkill> skills) {
-		this.skills = skills;
-	}
 	
 	public byte[] getImage() {
 		return image;
@@ -151,5 +148,15 @@ public class Associate {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public List<AssociateSkill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<AssociateSkill> skills) {
+		this.skills = skills;
+	}
+	
+	
 	
 }

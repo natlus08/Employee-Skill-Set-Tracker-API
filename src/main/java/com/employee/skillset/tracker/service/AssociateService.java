@@ -6,6 +6,7 @@ package com.employee.skillset.tracker.service;
 import java.util.List;
 
 import com.employee.skillset.tracker.model.Associate;
+import com.employee.skillset.tracker.model.AssociateSkill;
 
 /**
  * @author hameedu sultan
@@ -22,5 +23,7 @@ public interface AssociateService {
 	void removeAssociate(Long id);
 
 	Associate getAssociate(Long id);
+	
+	List<AssociateSkill> getAssociateSkills();
 
 }

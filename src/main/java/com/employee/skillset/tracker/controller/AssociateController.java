@@ -3,6 +3,7 @@
  */
 package com.employee.skillset.tracker.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employee.skillset.tracker.model.Associate;
+import com.employee.skillset.tracker.model.AssociateSkill;
+import com.employee.skillset.tracker.model.AssociateSkillId;
 import com.employee.skillset.tracker.service.AssociateService;
 
 /**
@@ -47,6 +50,18 @@ public class AssociateController {
 			return new ResponseEntity<List<Associate>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Associate>>(associates, HttpStatus.OK);
+	}
+	
+	/**
+	 * GET --> Get all associate skills
+	 */
+	@GetMapping("/associate-skills")
+	public ResponseEntity<List<AssociateSkill>> getAssociateSkills() {
+		List<AssociateSkill> associateSkills = associateService.getAssociateSkills();
+		if (associateSkills.isEmpty()) {
+			return new ResponseEntity<List<AssociateSkill>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<AssociateSkill>>(associateSkills, HttpStatus.OK);
 	}
 	
 	/**
