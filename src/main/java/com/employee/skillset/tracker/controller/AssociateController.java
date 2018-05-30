@@ -3,7 +3,7 @@
  */
 package com.employee.skillset.tracker.controller;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.employee.skillset.tracker.model.Associate;
-import com.employee.skillset.tracker.model.AssociateSkill;
-import com.employee.skillset.tracker.model.AssociateSkillId;
 import com.employee.skillset.tracker.service.AssociateService;
 
 /**
@@ -50,22 +50,10 @@ public class AssociateController {
 			return new ResponseEntity<List<Associate>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Associate>>(associates, HttpStatus.OK);
-	}
+	}	
 	
 	/**
-	 * GET --> Get all associate skills
-	 */
-	@GetMapping("/associate-skills")
-	public ResponseEntity<List<AssociateSkill>> getAssociateSkills() {
-		List<AssociateSkill> associateSkills = associateService.getAssociateSkills();
-		if (associateSkills.isEmpty()) {
-			return new ResponseEntity<List<AssociateSkill>>(HttpStatus.NO_CONTENT);
-		}
-		return new ResponseEntity<List<AssociateSkill>>(associateSkills, HttpStatus.OK);
-	}
-	
-	/**
-	 * GET --> Get an associates
+	 * GET --> Get an associate
 	 */
 	@GetMapping("/associate/{id}")
 	public ResponseEntity<Associate> getAssociate(@PathVariable Long id) {
@@ -77,7 +65,7 @@ public class AssociateController {
 	}
 	
 	/**
-	 * POST --> Add a Associate
+	 * POST --> Add an Associate only
 	 */
 	@PostMapping("/associate")
 	public ResponseEntity<Associate> addAssociate(@RequestBody Associate associate) {
@@ -86,6 +74,21 @@ public class AssociateController {
 			return new ResponseEntity<Associate>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Associate>(newAssociate, HttpStatus.CREATED);
+	}
+	
+	/**
+	 * POST --> Add an avatar
+	 */
+	@PostMapping("/avatar/{id}")
+	public ResponseEntity<Associate> addUser(@RequestPart("image") MultipartFile profileImage, @PathVariable Long id)
+	        throws IOException {
+		Associate associate = associateService.getAssociate(id);
+		associate.setImage(profileImage.getBytes());
+	    Associate newAssociate = associateService.addAssociate(associate);
+		if (null == newAssociate) {
+			return new ResponseEntity<Associate>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Associate>(newAssociate, HttpStatus.CREATED);    
 	}
 	
 	/**

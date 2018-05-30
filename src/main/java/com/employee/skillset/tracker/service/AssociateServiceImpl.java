@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.employee.skillset.tracker.model.Associate;
 import com.employee.skillset.tracker.model.AssociateSkill;
-import com.employee.skillset.tracker.model.Skill;
 import com.employee.skillset.tracker.repository.AssociateRepository;
 import com.employee.skillset.tracker.repository.AssociateSkillRepository;
 import com.employee.skillset.tracker.repository.SkillRepository;

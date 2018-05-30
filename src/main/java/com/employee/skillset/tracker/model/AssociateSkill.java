@@ -3,12 +3,11 @@
  */
 package com.employee.skillset.tracker.model;
 
-import javax.persistence.CascadeType;
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
@@ -20,47 +19,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "ASSOCIATE_SKILL")
+@AssociationOverrides({
+	@AssociationOverride(name = "pk.associate", 
+		joinColumns = @JoinColumn(name = "associate_id")),
+	@AssociationOverride(name = "pk.skill", 
+		joinColumns = @JoinColumn(name = "skill_id")) })
 public class AssociateSkill {
 	
-	@Id
-    @GeneratedValue
-    private long id;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "associate_id")
-	@JsonIgnore
-	private Associate associate;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "skill_id")
-	private Skill skill;
+	@EmbeddedId
+    private AssociateSkillId pk = new AssociateSkillId();
 	
 	@Max(value=20)
 	private Integer level;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
+	
+	@JsonIgnore
 	public Associate getAssociate() {
-		return associate;
+		return pk.getAssociate();
 	}
 
 	public void setAssociate(Associate associate) {
-		this.associate = associate;
+		pk.setAssociate(associate);
 	}
-
+ 
 	public Skill getSkill() {
-		return skill;
+		return pk.getSkill();
 	}
 
 	public void setSkill(Skill skill) {
-		this.skill = skill;
+		pk.setSkill(skill);
 	}
+	
 
 	public Integer getLevel() {
 		return level;
@@ -69,5 +57,7 @@ public class AssociateSkill {
 	public void setLevel(Integer level) {
 		this.level = level;
 	}
+	
+	
 
 }
