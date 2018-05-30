@@ -9,14 +9,14 @@ insert into ASSOCIATES(associate_id,name,email,status,level,remark,strength,weak
 insert into ASSOCIATES(associate_id,name,email,status,level,remark,strength,weakness,mobile,gender) values (3,'kader','123@abc.com','RED','THREE','remark','strength','weakness','1111122222','M');
 insert into ASSOCIATES(associate_id,name,email,status,level,remark,strength,weakness,mobile,gender) values (4,'sultana','1234@abc.com','BLUE','TWO','remark','strength','weakness','5432112345','F');
 
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(1,1,1,10);
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(2,1,2,20);
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(3,1,3,13);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(1,1,10);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(1,2,20);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(1,3,13);
 
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(4,2,1,14);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(2,1,14);
 
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(5,3,1,18);
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(6,3,3,19);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(3,1,18);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(3,3,19);
 
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(7,4,4,18);
-insert into ASSOCIATE_SKILL(id,associate_id,skill_id,level) values(8,4,5,12);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(4,4,18);
+insert into ASSOCIATE_SKILL(associate_id,skill_id,level) values(4,5,12);

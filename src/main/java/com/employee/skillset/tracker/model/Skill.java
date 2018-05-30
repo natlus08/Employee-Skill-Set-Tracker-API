@@ -3,11 +3,12 @@
  */
 package com.employee.skillset.tracker.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,9 +35,9 @@ public class Skill {
 	@Column(name="skill_name")
 	private String name;
 	
-	@OneToMany(mappedBy = "skill")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.skill")
 	@JsonIgnore
-	private Set<AssociateSkill> skills = new HashSet<AssociateSkill>();
+	private List<AssociateSkill> skills = new ArrayList<AssociateSkill>();
 
 	public Long getId() {
 		return id;
@@ -54,12 +55,14 @@ public class Skill {
 		this.name = name;
 	}
 
-	public Set<AssociateSkill> getSkills() {
+	public List<AssociateSkill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(Set<AssociateSkill> skills) {
+	public void setSkills(List<AssociateSkill> skills) {
 		this.skills = skills;
-	}	
+	}
+
+	
 
 }
