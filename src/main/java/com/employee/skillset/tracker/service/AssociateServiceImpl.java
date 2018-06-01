@@ -11,7 +11,6 @@ import com.employee.skillset.tracker.model.Associate;
 import com.employee.skillset.tracker.model.AssociateSkill;
 import com.employee.skillset.tracker.repository.AssociateRepository;
 import com.employee.skillset.tracker.repository.AssociateSkillRepository;
-import com.employee.skillset.tracker.repository.SkillRepository;
 
 /**
  * 
@@ -23,9 +22,6 @@ public class AssociateServiceImpl implements AssociateService{
 	
 	@Autowired
 	private AssociateRepository associateRespository;
-	
-	@Autowired
-	private SkillRepository skillRespository;
 	
 	@Autowired
 	private AssociateSkillRepository associateSkillRespository;
@@ -63,7 +59,16 @@ public class AssociateServiceImpl implements AssociateService{
 
 	@Override
 	public void removeAssociate(Long id) {
-		associateRespository.deleteById(id);	
+		List<AssociateSkill> associateSkills = null;
+		Associate associate = getAssociate(id);
+		if(null != associate) {
+			associateSkills = associate.getSkills();
+			if(!associateSkills.isEmpty()) {
+				associateSkillRespository.deleteAll(associateSkills);
+			}
+			associateRespository.deleteById(id);
+		}
+			
 	}
 
 	@Override
