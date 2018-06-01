@@ -12,7 +12,7 @@ import com.employee.skillset.tracker.model.Skill;
 import com.employee.skillset.tracker.repository.SkillRepository;
 
 /**
- * @author hus8623
+ * @author hameedu sultan
  *
  */
 @Service

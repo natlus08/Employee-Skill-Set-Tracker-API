@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 /**
- * @author hus8623
+ * @author hameedu sultan
  *
  */
 @Embeddable

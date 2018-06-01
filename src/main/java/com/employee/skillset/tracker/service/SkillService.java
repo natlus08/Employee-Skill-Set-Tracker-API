@@ -9,7 +9,7 @@ import com.employee.skillset.tracker.model.Skill;
 
 
 /**
- * @author hus8623
+ * @author hameedu sultan
  *
  */
 public interface SkillService {

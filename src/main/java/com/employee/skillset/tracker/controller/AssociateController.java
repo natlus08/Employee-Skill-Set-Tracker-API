@@ -27,7 +27,7 @@ import com.employee.skillset.tracker.model.Associate;
 import com.employee.skillset.tracker.service.AssociateService;
 
 /**
- * @author hus8623
+ * @author hameedu sultan
  *
  */
 @RestController
